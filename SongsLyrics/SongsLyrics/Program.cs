@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using System.Net;
-using System.Text;
 
 Console.Write("Enter an artist name: ");
 string artisName = Console.ReadLine();
@@ -23,9 +22,9 @@ using (var sr = new StreamReader(response.GetResponseStream()))
 text = text.Split("\"lyrics\":")[1]
     .Replace("}", "")
     .Replace("\\\"", "\"");
-    //.Replace("\"", "");
-text = text.Replace("\\n", Environment.NewLine).Replace("\\r", Environment.NewLine);
 
+text = text.Replace("\\n", Environment.NewLine)
+    .Replace("\\r", Environment.NewLine);
 
 var outputDir = ConfigurationManager.AppSettings["Path"];
 
@@ -34,4 +33,4 @@ if (!Directory.Exists(outputDir))
 
 var outputFile = Path.Combine(outputDir, $"{artisName}_{songName}.txt");
 File.WriteAllText(outputFile, text);
-var stop = "";
+
