@@ -1,35 +1,40 @@
 ﻿using System.Configuration;
 using System.Net;
-using System.Text;
 
-Console.Write("Enter an artist name: ");
-string artisName = Console.ReadLine();
-
-Console.Write("Enter a song name: ");
-string songName = Console.ReadLine();
-
-var request = WebRequest.Create($"https://api.lyrics.ovh/v1/{artisName}/{songName}");
-request.ContentType = "application/json; charset=utf-8";
-
-string text;
-var response = await request.GetResponseAsync();
-
-using (var sr = new StreamReader(response.GetResponseStream()))
+try
 {
-    text = await sr.ReadToEndAsync();
+    Console.Write("Enter an artist name: ");
+    string artisName = Console.ReadLine();
+
+    Console.Write("Enter a song name: ");
+    string songName = Console.ReadLine();
+
+    var request = WebRequest.Create($"https://api.lyrics.ovh/v1/{artisName}/{songName}");
+    request.ContentType = "application/json; charset=utf-8";
+
+    string text;
+    var response = await request.GetResponseAsync();
+
+    using (var sr = new StreamReader(response.GetResponseStream()))
+    {
+        text = await sr.ReadToEndAsync();
+    }
+
+    text = text.Split("\"lyrics\":")[1]
+        .Replace("}", "")
+        .Replace("\\\"", "\"")
+        .Replace("\\n", Environment.NewLine)
+        .Replace("\\r", Environment.NewLine);
+
+    var outputDir = ConfigurationManager.AppSettings["SavePath"];
+
+    if (!Directory.Exists(outputDir))
+        Directory.CreateDirectory(outputDir);
+
+    var outputFile = Path.Combine(outputDir, $"{artisName}_{songName}.txt");
+    File.WriteAllText(outputFile, text);
 }
-
-text = text.Split("\"lyrics\":")[1]
-    .Replace("}", "")
-    .Replace("\\\"", "\"")
-    .Replace("\\n", Environment.NewLine)
-    .Replace("\\r", Environment.NewLine);
-    
-var outputDir = ConfigurationManager.AppSettings["SavePath"];
-
-if (!Directory.Exists(outputDir))
-    Directory.CreateDirectory(outputDir);
-
-var outputFile = Path.Combine(outputDir, $"{artisName}_{songName}.txt");
-File.WriteAllText(outputFile, text);
-var stop = "";
+catch(Exception ex)
+{
+    Console.WriteLine(ex.ToString());
+}
