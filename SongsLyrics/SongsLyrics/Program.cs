@@ -25,7 +25,7 @@ text = text.Split("\"lyrics\":")[1]
     .Replace("\\n", Environment.NewLine)
     .Replace("\\r", Environment.NewLine);
     
-var outputDir = ConfigurationManager.AppSettings["Path"];
+var outputDir = ConfigurationManager.AppSettings["SavePath"];
 
 if (!Directory.Exists(outputDir))
     Directory.CreateDirectory(outputDir);
