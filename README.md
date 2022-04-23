@@ -13,7 +13,7 @@
 
 Enter an artist name and press enter
 
- ![image](https://github.com/MilanaPetkovic/SongLyrics/blob/main/READMEImages/eminem.png)
+![image](https://github.com/MilanaPetkovic/SongsLyrics/blob/main/READMEImages/eminem.png)
 
 ## SongName
 
