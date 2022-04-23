@@ -19,18 +19,18 @@ Enter an artist name and press enter
 
 Enter a song name and press enter
 
-![image](https://github.com/MilanaPetkovic/SongLyrics/blob/main/READMEImages/song.png)
+![image](https://github.com/MilanaPetkovic/SongsLyrics/blob/main/READMEImages/beautiful.png)
 
 ## OutputFolder
 
 Output folder from App.config
 
-![image](https://github.com/MilanaPetkovic/SongLyrics/blob/main/READMEImages/folder.png)
+![image](https://github.com/MilanaPetkovic/SongsLyrics/blob/main/READMEImages/folder.png)
 
 
 ## SongLyrics
 
 And a song lyrics in txt format
 
-![image](https://github.com/MilanaPetkovic/SongLyrics/blob/main/READMEImages/song.png)
+![image](https://github.com/MilanaPetkovic/SongsLyrics/blob/main/READMEImages/song.png)
 
